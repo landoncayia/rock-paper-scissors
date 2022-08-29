@@ -9,19 +9,37 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection[0].toUpperCase()
     + playerSelection.substring(1);
 
+  // Return -1 for player loss; 1 for player win; 0 for tie
   if (playerSelection == "Rock" && computerSelection == "Paper") {
-    return "You Lose! Paper beats Rock";
+    console.log("You Lose! Paper beats Rock");
+    return -1;
   } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
-    return "You Win! Rock beats Scissors";
+    console.log("You Win! Rock beats Scissors");
+    return 1;
   } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
-    return "You Lose! Scissors beat Paper";
+    console.log("You Lose! Scissors beat Paper");
+    return -1;
   } else if (playerSelection == "Paper" && computerSelection == "Rock") {
-    return "You Win! Paper beats Rock";
+    console.log("You Win! Paper beats Rock");
+    return 1;
   } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
-    return "You Lose! Rock beats Scissors";
+    console.log("You Lose! Rock beats Scissors");
+    return -1;
   } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
-    return "You Win! Scissors beat Paper";
+    console.log("You Win! Scissors beat Paper");
+    return 1;
   } else {
-    return "It's a Tie!";
+    console.log("It's a Tie!");
+    return 0;
+  }
+}
+
+function game() {
+  // Playing five rounds; keep track of each player's score
+  let playerScore = 0;
+  let computerScore = 0;
+  for (let i = 0; i < 5; i++) {
+    result = playRound("Rock", "Scissors");
+    console.log(result);
   }
 }
