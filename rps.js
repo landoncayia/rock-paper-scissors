@@ -34,34 +34,35 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-function game() {
-  // Keep track of each player's score
-  let playerScore = 0;
-  let computerScore = 0;
+// Keep track of each player's score
+let playerScore = 0;
+let computerScore = 0;
 
-  // "Holder" variables for playing the game
-  let playerInput;
-  let roundResult;
+// "Holder" variable for the result of each round
+let roundResult;
 
-  for (let i = 0; i < 5; i++) {
-    playerInput = prompt("Enter your choice (Rock, Paper, or Scissors): ");
-    roundResult = playRound(playerInput, getComputerChoice());
+const optionButtons = document.querySelectorAll('.button-container > button');
 
+optionButtons.forEach((button) => {
+  button.addEventListener('click', () => {
+    roundResult = playRound(button.id, getComputerChoice());
+
+    // Update scores
     if (roundResult == 1) {
       playerScore += 1;
     } else if (roundResult == -1) {
       computerScore += 1;
     }
-  }
+  });
+});
 
-  if (playerScore > computerScore) {
-    console.log("You Won!")
-  } else if (playerScore < computerScore) {
-    console.log("You Lost!");
-  } else {
-    console.log("The game ends in a Tie!");
-  }
+// if (playerScore > computerScore) {
+//   console.log("You Won!")
+// } else if (playerScore < computerScore) {
+//   console.log("You Lost!");
+// } else {
+//   console.log("The game ends in a Tie!");
+// }
 
-  console.log("Your final score is " + playerScore);
-  console.log("The computer's final score is " + computerScore);
-}
+// console.log("Your final score is " + playerScore);
+// console.log("The computer's final score is " + computerScore);
