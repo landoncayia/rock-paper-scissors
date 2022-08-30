@@ -1,3 +1,10 @@
+// Keep track of each player's score
+let playerScore = 0;
+let computerScore = 0;
+
+// "Holder" variable for the result of each round
+let roundResult;
+
 function getComputerChoice() {
   const options = ["Rock", "Paper", "Scissors"]
   let choice = Math.floor(Math.random() * 3);
@@ -34,25 +41,20 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-// Keep track of each player's score
-let playerScore = 0;
-let computerScore = 0;
-
-// "Holder" variable for the result of each round
-let roundResult;
+function updateScores(result) {
+  if (result === 1) {
+    playerScore++;
+  } else if (result === -1) {
+    computerScore++;
+  }
+}
 
 const optionButtons = document.querySelectorAll('.button-container > button');
 
 optionButtons.forEach((button) => {
   button.addEventListener('click', () => {
     roundResult = playRound(button.id, getComputerChoice());
-
-    // Update scores
-    if (roundResult == 1) {
-      playerScore += 1;
-    } else if (roundResult == -1) {
-      computerScore += 1;
-    }
+    updateScores(roundResult);
   });
 });
 
