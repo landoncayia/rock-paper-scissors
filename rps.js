@@ -5,6 +5,8 @@ let computerScore = 0;
 // "Holder" variable for the result of each round
 let roundResult;
 
+let gameOver = false;
+
 const optionButtons = document.querySelectorAll('.button-container > button');
 const displayPlayerScore = document.querySelector('#player-score');
 const displayComputerScore = document.querySelector('#computer-score');
@@ -76,20 +78,34 @@ function updateScores(result) {
   }
 }
 
+/* 
+Checks if either player has reached five points or not. Returns true if so,
+false if not.
+*/
+function checkGameOver() {
+  const msg = document.createElement('p');
+
+  if (playerScore == 5) {
+    msg.textContent = 'Game Over—You Won!';
+    results.appendChild(msg);
+    return true;
+  } else if (computerScore == 5) {
+    msg.textContent = 'Game Over—You Lost!';
+    results.appendChild(msg);
+    return true;
+  }
+  return false;
+}
+
 optionButtons.forEach((button) => {
   button.addEventListener('click', () => {
-    roundResult = playRound(button.id, getComputerChoice());
-    updateScores(roundResult);
+    if (!gameOver) {
+      roundResult = playRound(button.id, getComputerChoice());
+      updateScores(roundResult);
+      gameOver = checkGameOver();
+    }
   });
 });
-
-// if (playerScore > computerScore) {
-//   console.log("You Won!")
-// } else if (playerScore < computerScore) {
-//   console.log("You Lost!");
-// } else {
-//   console.log("The game ends in a Tie!");
-// }
 
 // console.log("Your final score is " + playerScore);
 // console.log("The computer's final score is " + computerScore);
