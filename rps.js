@@ -10,12 +10,19 @@ const displayPlayerScore = document.querySelector('#player-score');
 const displayComputerScore = document.querySelector('#computer-score');
 const results = document.querySelector('.results');
 
+/*
+Randomly chooses between rock, paper, and scissors for the computer's choice.
+*/
 function getComputerChoice() {
   const options = ["Rock", "Paper", "Scissors"]
   let choice = Math.floor(Math.random() * 3);
   return options[choice];
 }
 
+/*
+Plays one round of the game, taking in a player move choice and a computer move
+choice (rock, paper, or scissors).
+*/
 function playRound(playerSelection, computerSelection) {
   // Normalize player input: first letter is uppercase, rest are lowercase
   playerSelection = playerSelection[0].toUpperCase()
@@ -55,6 +62,10 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
+/*
+Updates the score variables and the live scores on the page based on the
+result of the round, which is passed in.
+*/
 function updateScores(result) {
   if (result === 1) {
     playerScore++;
