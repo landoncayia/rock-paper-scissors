@@ -29,9 +29,43 @@ body {
 
 .results {
   border: 1px solid black;
+  border-radius: 5px;
   min-height: 50px;
 }
 
 button {
   font-family: 'Courier New', Courier, monospace;
+  font-size: 24px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  min-width: 100px;
+  min-height: 50px;
+}
+
+#rock {
+  background-color: sandybrown;
+  border: 2px solid brown;
+}
+
+#rock:active {
+  background-color: brown;
+}
+
+#paper {
+  background-color: white;
+  border: 2px solid gray;
+}
+
+#paper:active {
+  background-color: gray;
+}
+
+#scissors {
+  background-color: lightgray;
+  border: 2px solid darkblue;
+}
+
+#scissors:active {
+  background-color: darkblue;
 }
