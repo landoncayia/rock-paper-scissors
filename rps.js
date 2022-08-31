@@ -6,6 +6,8 @@ let computerScore = 0;
 let roundResult;
 
 const optionButtons = document.querySelectorAll('.button-container > button');
+const displayPlayerScore = document.querySelector('#player-score');
+const displayComputerScore = document.querySelector('#computer-score');
 const results = document.querySelector('.results');
 
 function getComputerChoice() {
@@ -44,6 +46,7 @@ function playRound(playerSelection, computerSelection) {
     return -1;
   } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
     msg.textContent = "You Win! Scissors beat Paper";
+    results.appendChild(msg);
     return 1;
   } else {
     msg.textContent = "It's a Tie!";
@@ -55,8 +58,10 @@ function playRound(playerSelection, computerSelection) {
 function updateScores(result) {
   if (result === 1) {
     playerScore++;
+    displayPlayerScore.innerText = `Player score: ${playerScore}`;
   } else if (result === -1) {
     computerScore++;
+    displayComputerScore.innerText = `Computer score: ${computerScore}`;
   }
 }
 
