@@ -30,37 +30,34 @@ function playRound(playerSelection, computerSelection) {
   playerSelection = playerSelection[0].toUpperCase()
     + playerSelection.substring(1);
 
-  const msg = document.createElement('p');
-
   // Return -1 for player loss; 1 for player win; 0 for tie
   if (playerSelection == "Rock" && computerSelection == "Paper") {
-    msg.textContent = "You Lose! Paper beats Rock";
-    results.appendChild(msg);
+    results.lastChild.innerText = "You: Rock\nComputer: Paper\nYou Lose!";
     return -1;
   } else if (playerSelection == "Rock" && computerSelection == "Scissors") {
-    msg.textContent = "You Win! Rock beats Scissors";
-    results.appendChild(msg);
+    results.lastChild.innerText = "You: Rock\nComputer: Scissors\nYou Win!";
     return 1;
   } else if (playerSelection == "Paper" && computerSelection == "Scissors") {
-    msg.textContent = "You Lose! Scissors beat Paper";
-    results.appendChild(msg);
+    results.lastChild.innerText = "You: Paper\nComputer: Scissors\n You Lose!";
     return -1;
   } else if (playerSelection == "Paper" && computerSelection == "Rock") {
-    msg.textContent = "You Win! Paper beats Rock";
-    results.appendChild(msg);
+    results.lastChild.innerText = "You: Paper\nComputer: Rock\n You Win!";
     return 1;
   } else if (playerSelection == "Scissors" && computerSelection == "Rock") {
-    msg.textContent = "You Lose! Rock beats Scissors";
-    results.appendChild(msg);
+    results.lastChild.innerText = "You: Scissors\nComputer: Rock\nYou Lose!";
     return -1;
   } else if (playerSelection == "Scissors" && computerSelection == "Paper") {
-    msg.textContent = "You Win! Scissors beat Paper";
-    results.appendChild(msg);
+    results.lastChild.innerText = "You: Scissors\nComputer: Paper\nYou Win!";
     return 1;
-  } else {
-    msg.textContent = "It's a Tie!";
-    results.appendChild(msg);
+  } else if (playerSelection == "Rock" && computerSelection == "Rock") {
+    results.lastChild.innerText = "You: Rock\nComputer: Rock\nIt's a Tie!";
     return 0;
+  } else if (playerSelection == "Paper" && computerSelection == "Paper") {
+    results.lastChild.innerText = "You: Paper\nComputer: Paper\nIt's a Tie!";
+  } else if (playerSelection == "Scissors" &&
+             computerSelection == "Scissors") {
+    results.lastChild.innerText = "You: Scissors\nComputer: Scissors\n" +
+      "It's a tie!";
   }
 }
 
@@ -99,8 +96,13 @@ function checkGameOver() {
 
 optionButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    const msg = document.createElement('p');
+    msg.textContent = 'Computer is thinking...';
+    results.appendChild(msg);
     if (!gameOver) {
-      roundResult = playRound(button.id, getComputerChoice());
+      setTimeout(() => {
+        roundResult = playRound(button.id, getComputerChoice());
+      }, 1000);
       updateScores(roundResult);
       gameOver = checkGameOver();
     }
