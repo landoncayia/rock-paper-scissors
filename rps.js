@@ -115,6 +115,7 @@ optionButtons.forEach((button) => {
         roundResult = playRound(button.id, getComputerChoice());
         disableOptionButtons(false);
         updateScores(roundResult);
+        results.scrollTop = results.scrollHeight;
         gameOver = checkGameOver();
         if (gameOver) {
           disableOptionButtons(true);
