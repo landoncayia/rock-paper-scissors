@@ -114,9 +114,12 @@ optionButtons.forEach((button) => {
       setTimeout(() => {
         roundResult = playRound(button.id, getComputerChoice());
         disableOptionButtons(false);
+        updateScores(roundResult);
+        gameOver = checkGameOver();
+        if (gameOver) {
+          disableOptionButtons(true);
+        }
       }, 1000);
-      updateScores(roundResult);
-      gameOver = checkGameOver();
     }
   });
 });
