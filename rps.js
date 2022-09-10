@@ -85,10 +85,14 @@ function checkGameOver() {
   if (playerScore == 5) {
     msg.textContent = 'Game Over—You Won!';
     results.appendChild(msg);
+    displayPlayerScore.style.color = "green";
+    displayPlayerScore.style.fontWeight = "bold";
     return true;
   } else if (computerScore == 5) {
     msg.textContent = 'Game Over—You Lost!';
     results.appendChild(msg);
+    displayComputerScore.style.color = "green";
+    displayComputerScore.style.fontWeight = "bold";
     return true;
   }
   return false;
