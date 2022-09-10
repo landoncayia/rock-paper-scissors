@@ -94,14 +94,26 @@ function checkGameOver() {
   return false;
 }
 
+/*
+Sets ability to click option buttons. If state is true, buttons are disabled;
+otherwise, buttons are enabled.
+*/
+function disableOptionButtons(state) {
+  optionButtons.forEach((button) => {
+      button.disabled = state;
+  })
+}
+
 optionButtons.forEach((button) => {
   button.addEventListener('click', () => {
+    disableOptionButtons(true);
     const msg = document.createElement('p');
     msg.textContent = 'Computer is thinking...';
     results.appendChild(msg);
     if (!gameOver) {
       setTimeout(() => {
         roundResult = playRound(button.id, getComputerChoice());
+        disableOptionButtons(false);
       }, 1000);
       updateScores(roundResult);
       gameOver = checkGameOver();
